@@ -53,3 +53,35 @@ footer {
     background: #f8d7da;
     color: #a12a35;
 }
+form.crud {
+    background: white;
+    padding: 16px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+}
+form.crud label {
+    display: block;
+    margin: 8px 0 4px;
+    font-weight: bold;
+}
+form.crud input, form.crud select {
+    padding: 8px;
+    width: 100%;
+    max-width: 360px;
+    box-sizing: border-box;
+}
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    background: #1f7a4d;
+    color: white;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+.btn-kecil { padding: 4px 10px; font-size: 13px; }
+.btn-abu   { background: #6c757d; }
+.btn-merah { background: #c0392b; }
+.pesan-ok  { color: #1e6b34; }
+.pesan-err { color: #a12a35; }
