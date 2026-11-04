@@ -39,3 +39,17 @@ footer {
     color: #777;
     padding: 20px;
 }
+.badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.badge-aktif {
+    background: #d4edda;
+    color: #1e6b34;
+}
+.badge-nonaktif {
+    background: #f8d7da;
+    color: #a12a35;
+}

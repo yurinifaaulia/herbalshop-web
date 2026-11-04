@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$barang = mysqli_query($conn, "SELECT idbarang, nama FROM v_barang");
+$barang = mysqli_query($conn, "SELECT idbarang, nama FROM v_barang WHERE status = 'Aktif'");
 ?>
 
 <h1>Penjualan</h1>

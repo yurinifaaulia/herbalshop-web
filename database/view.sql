@@ -2,17 +2,16 @@ USE hni;
 
 -- SIMPLE VIEW: barang aktif beserta nama satuannya
 CREATE OR REPLACE VIEW v_barang AS
-SELECT b.idbarang, b.nama, s.nama_satuan AS satuan, b.harga
+SELECT b.idbarang, b.nama, s.nama_satuan AS satuan, b.harga,
+       IF(b.status = 1, 'Aktif', 'Nonaktif') AS status
 FROM barang b
-JOIN satuan s ON b.idsatuan = s.idsatuan
-WHERE b.status = 1;
+JOIN satuan s ON b.idsatuan = s.idsatuan;
 
--- SIMPLE VIEW: vendor aktif
-CREATE OR REPLACE VIEW v_vendor_aktif AS
-SELECT idvendor, nama_vendor, badan_hukum
-FROM vendor
-WHERE status = '1';
-
+-- simple view : vendor 
+CREATE OR REPLACE VIEW v_vendor AS
+SELECT idvendor, nama_vendor, badan_hukum,
+       IF(status = '1', 'Aktif', 'Nonaktif') AS status
+FROM vendor;
 
 -- VIEW: role
 CREATE OR REPLACE VIEW v_role AS

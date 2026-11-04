@@ -1,5 +1,6 @@
 <?php
 include __DIR__ . "/../config/koneksi.php";
+include __DIR__ . "/../includes/fungsi.php";
 include __DIR__ . "/../includes/header.php";
 
 $hasil = mysqli_query($conn, "SELECT * FROM v_barang");
@@ -12,13 +13,15 @@ $hasil = mysqli_query($conn, "SELECT * FROM v_barang");
         <th>Nama Barang</th>
         <th>Satuan</th>
         <th>Harga</th>
+        <th>Status</th>
     </tr>
     <?php while ($row = mysqli_fetch_assoc($hasil)) { ?>
     <tr>
         <td><?= $row['idbarang'] ?></td>
-        <td><?= $row['nama'] ?></td>
-        <td><?= $row['satuan'] ?></td>
+        <td><?= htmlspecialchars($row['nama']) ?></td>
+        <td><?= htmlspecialchars($row['satuan']) ?></td>
         <td>Rp <?= number_format($row['harga'], 0, ',', '.') ?></td>
+        <td><?= badge_status($row['status']) ?></td>
     </tr>
     <?php } ?>
 </table>
