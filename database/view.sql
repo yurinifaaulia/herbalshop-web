@@ -13,14 +13,6 @@ SELECT idvendor, nama_vendor, badan_hukum
 FROM vendor
 WHERE status = '1';
 
--- COMPLEX VIEW: total pengadaan per vendor
-CREATE OR REPLACE VIEW v_total_pengadaan_vendor AS
-SELECT v.nama_vendor,
-       COUNT(p.idpengadaan) AS jumlah_pengadaan,
-       IFNULL(SUM(p.total_nilai), 0) AS total_nilai
-FROM vendor v
-LEFT JOIN pengadaan p ON p.vendor_idvendor = v.idvendor
-GROUP BY v.nama_vendor;
 
 -- VIEW: role
 CREATE OR REPLACE VIEW v_role AS
@@ -33,7 +25,7 @@ SELECT idsatuan, nama_satuan,
        IF(status = 1, 'Aktif', 'Nonaktif') AS status
 FROM satuan;
 
--- VIEW: user (kolom password sengaja TIDAK ditampilkan)
+-- VIEW: user (kolom password gausah ditampilkan)
 CREATE OR REPLACE VIEW v_user AS
 SELECT u.iduser, u.username, r.nama_role AS role
 FROM user u
@@ -47,3 +39,24 @@ SELECT m.idmargin_penjualan, m.persen,
        m.created_at, m.updated_at
 FROM margin_penjualan m
 JOIN user u ON m.iduser = u.iduser;
+
+-- COMPLEX VIEW: total pengadaan per vendor
+CREATE OR REPLACE VIEW v_total_pengadaan_vendor AS
+SELECT v.nama_vendor,
+       COUNT(p.idpengadaan) AS jumlah_pengadaan,
+       IFNULL(SUM(p.total_nilai), 0) AS total_nilai
+FROM vendor v
+LEFT JOIN pengadaan p ON p.vendor_idvendor = v.idvendor
+GROUP BY v.nama_vendor;
+
+-- complex view juga : kartu stok
+CREATE OR REPLACE VIEW v_kartu_stok AS
+SELECT k.idkartu_stok, b.nama AS barang,
+       CASE k.jenis_transaksi
+            WHEN 'P' THEN 'Penerimaan'
+            WHEN 'J' THEN 'Penjualan'
+            WHEN 'R' THEN 'Retur'
+       END AS transaksi,
+       k.idtransaksi, k.masuk, k.keluar, k.stock, k.created_at
+FROM kartu_stok k
+JOIN barang b ON k.idbarang = b.idbarang;

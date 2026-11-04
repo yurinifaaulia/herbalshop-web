@@ -10,5 +10,7 @@
     <a href="/herbalshop-web/pages/vendor.php">Vendor</a>
     <a href="/herbalshop-web/pages/margin.php">Margin</a>
     <a href="/herbalshop-web/pages/pengadaan.php">Pengadaan</a>
+    <a href="/herbalshop-web/pages/penjualan.php">Penjualan</a>
+    <a href="/herbalshop-web/pages/kartu_stok.php">Kartu Stok</a>
 </nav>
 <main>
